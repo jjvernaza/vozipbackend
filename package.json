@@ -1,0 +1,23 @@
+{
+  "name": "vozipbackend",
+  "version": "1.0.0",
+  "description": "backend vozip project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jjvernaza/vozipbackend.git"
+  },
+  "author": "juan jose vernaza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jjvernaza/vozipbackend/issues"
+  },
+  "homepage": "https://github.com/jjvernaza/vozipbackend#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sequelize": "^6.28.0"
+  }
+}
