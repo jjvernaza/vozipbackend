@@ -1,22 +1,22 @@
 {
   "development": {
     "username": "root",
-    "password": "ju4nj0s3",
-    "database": "VOZIP",
+    "password": "",
+    "database": "vozip",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "ju4nj0s3",
-    "database": "VOZIP",
+    "password": "",
+    "database": "vozip",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": "ju4nj0s3",
-    "database": "VOZIP",
+    "password": "",
+    "database": "vozip",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }

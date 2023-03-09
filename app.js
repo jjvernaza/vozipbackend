@@ -1,8 +1,13 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const { fn } = require('sequelize');
 const app = express();
 
-const postsRoute = require('./routes/posts');
-app.use("/posts", postsRoute);
+const clientesRoute = require('./routes/clientes');
+
+
+app.use(bodyParser.json());    
+
+app.use("/clientes", clientesRoute);
 
 module.exports = app;
