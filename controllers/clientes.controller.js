@@ -1,6 +1,6 @@
-
+const validator = require("fastest-validator");
+const { CHAR } = require("sequelize");
 const models = require('../models');
-
 
 
 function save (req,res){
@@ -19,6 +19,36 @@ function save (req,res){
         act_esta: req.body.act_esta,
         userid: 1
     }
+
+    const schema =  {
+
+        cedula: {type: String,optional: false, max: "12"},
+        nombre: {type: String,optional: false, max: "50"},
+        apellido: {type: String,optional: false, max: "50"},
+        direccion: {type: String,optional: false, max: "50"},
+        correo_electronico:{type: String,optional: false, max: "50"},
+        fecha_instalacion: {type: Date,optional: false, max: "8"},
+        ip_adress: {type: String,optional: false, max: "10"},
+        celular: {type: String,optional: false, max: "15"},
+        id_plan: {type: BigInt,optional: false},
+        act_usua: {type: String,optional: false, max: "12"},
+        act_hora: {type: datetime,optional: false},
+        act_esta: {type: CHAR,optional: false, max: "1"},
+        userid: 1        
+
+    }
+
+        const v = new validator();
+        const validationResponse = v.validate(clientes, schema);
+
+        if(validationResponse !== true ) {
+            res.status(400 ).json({
+                message:"validation failed",
+                errors: validationResponse
+
+            });    
+        }
+
     models.post.create(post).then(result => {
 
         res.status(201).json({
@@ -39,8 +69,18 @@ function save (req,res){
 }
 
 
-function show (req,res){
+/* async */ function show (req,res) {
     const id = req.params.id;
+    /*
+    try {
+        const resp = await models.clientes.findByPk(id)
+        if (!resp)
+            return res.status(404).json({ message: "Post not foud" })
+        return res.status(200).json(result);
+        
+    } catch (err) {
+        res.status(500).json({ message: "Somthing is wrong" })
+    } */
 
     models.clientes.findByPk(id).then(result => {
 
@@ -48,13 +88,13 @@ function show (req,res){
             res.status(200).json(result);
 
         } else{
-            ResizeObserver.status(404).json({
+            res.status(404).json({
                 message: "Post not foud"
             })
         }
-        res.status(200).json(result);
+        // res.status(200).json(result);
     }).catch(error => {
-        ResizeObserver.status(500).json({
+        res.status(500).json({
             message: "Somthing is wrong"
         })
     });
@@ -63,7 +103,7 @@ function index (req,res){
     models.clientes.findAll().then(result => {
         res.status(200).json(result);
     }).catch(error => {
-        ResizeObserver.status(500).json({
+        res.status(500).json({
             message: "Somthing is wrong"
         })
     });
@@ -89,6 +129,35 @@ function update (req,res){
     }
 
     const userId = 1;
+
+    const schema =  {
+
+        cedula: {type: String,optional: false, max: "12"},
+        nombre: {type: String,optional: false, max: "50"},
+        apellido: {type: String,optional: false, max: "50"},
+        direccion: {type: String,optional: false, max: "50"},
+        correo_electronico:{type: String,optional: false, max: "50"},
+        fecha_instalacion: {type: Date,optional: false, max: "8"},
+        ip_adress: {type: String,optional: false, max: "10"},
+        celular: {type: String,optional: false, max: "15"},
+        id_plan: {type: BigInt,optional: false},
+        act_usua: {type: String,optional: false, max: "12"},
+        act_hora: {type: datetime,optional: false},
+        act_esta: {type: CHAR,optional: false, max: "1"},
+        userid: 1        
+
+    }
+
+        const v = new validator();
+        const validationResponse = v.validate(updatedClientes, schema);
+
+        if(validationResponse !== true ) {
+            res.status(400 ).json({
+                message:"validation failed",
+                errors: validationResponse
+
+            });    
+        }
 
     models.clientes.update(updatedClientes,{where: {id:id, userId:userId}}).then(result => {
         res.status(200).json({
