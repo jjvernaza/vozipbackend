@@ -96,7 +96,8 @@ function login(req, res) {
                         }, 'secret ', function (err, token) {
                             res.status(200).json({
                                 message: "autentication sucessfull",
-                                token: token
+                                token: token,
+                                email:user.email
                             });
                         });
                     } else {
@@ -111,9 +112,6 @@ function login(req, res) {
                 message: "something went wrong"
             });
         });
-
-
-
 }
 
 module.exports = {
